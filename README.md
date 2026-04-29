@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 客製化報價單生成器
 
-## Getting Started
+一個以 **Next.js、React、Tailwind CSS** 製作的高質感客製化報價單生成器，適合作為作品集展示與商業工具 demo。
 
-First, run the development server:
+此專案的核心目標不是單純表單呈現，而是模擬真實商業情境中的報價流程，讓使用者可以快速整理客戶資料、管理多筆品項、即時計算金額，並同步預覽完整報價摘要。
+
+## 線上展示
+
+- Demo Website: https://custom-quotation-tool.vercel.app/
+
+## 專案定位
+
+這是一個以 **商業流程展示** 為導向的前端作品，強調：
+
+- 高質感、現代感的 UI 呈現
+- 真實報價流程的互動設計
+- 可延伸成接案、設計、工程、顧問型服務的報價工具
+- 適合作為作品集展示，也具備後續產品化潛力
+
+## 使用技術
+
+- Next.js
+- React
+- Tailwind CSS
+- TypeScript
+
+## 目前功能
+
+- 基本資料填寫
+  - 客戶名稱
+  - 報價單編號
+  - 日期
+  - 聯絡人
+  - 備註
+
+- 品項清單管理
+  - 可新增多筆品項
+  - 可刪除品項
+  - 可輸入品項名稱、單價、數量
+
+- 自動金額計算
+  - 單價 × 數量自動計算小計
+  - 自動加總所有品項
+  - 可輸入折扣金額
+  - 可設定稅額百分比
+  - 即時計算最終總金額
+
+- 即時報價預覽
+  - 即時整理報價摘要
+  - 顯示報價單主要資訊與金額狀態
+
+- 響應式設計
+  - 支援桌面與手機瀏覽
+
+## 作品亮點
+
+- 不走傳統老舊後台風格，而是以簡潔、留白、圓角卡片、柔和陰影打造更具商業感的介面
+- 不是只有靜態畫面，而是具備互動邏輯與即時計算能力
+- 適合延伸成真實商業工具，例如：
+  - 客製報價流程
+  - 留單 / 詢價頁面
+  - PDF 匯出
+  - 資料儲存
+  - CRM / 表單流程整合
+
+## 下一步規劃
+
+- Hero 區按鈕互動優化
+  - 左按鈕：跳轉至 `/inquiry`
+  - 右按鈕：平滑捲動至報價預覽區
+
+- 新增 `/inquiry` 頁面
+  - 預約客製報價
+  - 客製需求填寫
+  - 留下聯絡資料與需求內容
+
+- 功能延伸
+  - localStorage 儲存
+  - PDF 匯出
+  - 表單送出
+  - Supabase / Google Sheet 串接
+
+## 本機執行方式
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
