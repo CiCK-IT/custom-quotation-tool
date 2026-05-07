@@ -3,7 +3,7 @@ export default function BrandFooter() {
     <footer className="glass-panel rounded-[32px] px-6 py-6 sm:px-8">
       <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
         <div className="max-w-3xl">
-          <p className="mb-2 text-xs font-medium uppercase tracking-[0.24em] text-neutral-500">
+          <p className="eyebrow mb-2 text-neutral-500">
             cick tools
           </p>
           <h2 className="text-xl font-semibold tracking-tight text-neutral-950">關於 cick tools</h2>

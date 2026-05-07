@@ -44,7 +44,7 @@ function SectionCard({ eyebrow, title, description, children, className = "" }) 
   return (
     <section className={`glass-panel rounded-[32px] p-6 sm:p-8 ${className}`}>
       <div className="mb-6">
-        <p className="mb-2 text-xs font-medium tracking-[0.24em] text-neutral-500 uppercase">
+        <p className="eyebrow mb-2 text-neutral-500">
           {eyebrow}
         </p>
         <div className="space-y-2">
@@ -138,9 +138,9 @@ export default function QuoteGenerator() {
               </div>
 
               <div className="space-y-4">
-                <p className="font-display text-4xl font-semibold leading-tight text-neutral-950 sm:text-5xl lg:text-6xl">
+                <h1 className="font-display text-4xl font-semibold leading-tight text-neutral-950 sm:text-5xl lg:text-6xl">
                   客製化報價單生成器
-                </p>
+                </h1>
                 <p className="max-w-2xl text-base leading-8 text-neutral-600 sm:text-lg">
                   以高質感介面整理報價流程，讓商務提案、費用計算與對外溝通一次到位。這是一個適合放進作品集展示，也能作為真實商業工具 demo 的前端作品。
                 </p>
@@ -180,7 +180,7 @@ export default function QuoteGenerator() {
               <div className="soft-ring rounded-[32px] bg-[#171717] p-4 text-white shadow-[0_24px_70px_rgba(17,17,17,0.25)]">
                 <div className="mb-4 flex items-center justify-between">
                   <div>
-                    <p className="text-xs uppercase tracking-[0.24em] text-white/50">工具預覽</p>
+                    <p className="eyebrow text-white/50">工具預覽</p>
                     <p className="mt-2 text-lg font-semibold">報價摘要面板</p>
                   </div>
                   <div className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">Live Demo</div>

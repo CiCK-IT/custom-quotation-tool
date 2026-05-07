@@ -130,7 +130,7 @@ export default function InquiryPage() {
         <section className="glass-panel fade-up overflow-hidden rounded-[36px] px-6 py-9 sm:px-8 lg:px-10 lg:py-12">
           <div className="grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
             <div className="space-y-6">
-              <div className="inline-flex items-center rounded-full border border-white/70 bg-white/65 px-4 py-2 text-xs font-medium tracking-[0.2em] text-neutral-600 uppercase">
+              <div className="inline-flex items-center rounded-full border border-white/70 bg-white/65 px-4 py-2 text-xs font-medium tracking-[0.22em] text-neutral-600 uppercase">
                 客製需求填寫
               </div>
 
@@ -177,7 +177,7 @@ export default function InquiryPage() {
             <aside className="soft-ring rounded-[32px] bg-neutral-950 p-5 text-white shadow-[0_24px_70px_rgba(17,17,17,0.2)] sm:p-6">
               <div className="mb-6 flex items-center justify-between gap-4">
                 <div>
-                  <p className="text-xs uppercase tracking-[0.24em] text-white/45">Process</p>
+                  <p className="eyebrow text-white/45">Process</p>
                   <p className="mt-2 text-xl font-semibold">合作流程</p>
                 </div>
                 <span className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">Demo</span>
@@ -201,7 +201,7 @@ export default function InquiryPage() {
 
         <section id="suitable-needs" className="space-y-5">
           <div className="max-w-3xl">
-            <p className="mb-2 text-xs font-medium tracking-[0.24em] text-neutral-500 uppercase">
+            <p className="eyebrow mb-2 text-neutral-500">
               Use Cases
             </p>
             <h2 className="text-2xl font-semibold tracking-tight text-neutral-950 sm:text-3xl">
@@ -231,7 +231,7 @@ export default function InquiryPage() {
         <section id="inquiry-form" className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
           <form onSubmit={handleSubmit} className="glass-panel rounded-[34px] p-6 sm:p-8">
             <div className="mb-7">
-              <p className="mb-2 text-xs font-medium tracking-[0.24em] text-neutral-500 uppercase">
+              <p className="eyebrow mb-2 text-neutral-500">
                 Inquiry Form
               </p>
               <h2 className="text-2xl font-semibold tracking-tight text-neutral-950">填寫需求內容</h2>
@@ -365,7 +365,7 @@ export default function InquiryPage() {
 
           <aside className="space-y-6 lg:sticky lg:top-6">
             <div className="glass-panel rounded-[34px] p-6 sm:p-8">
-              <p className="mb-2 text-xs font-medium tracking-[0.24em] text-neutral-500 uppercase">
+              <p className="eyebrow mb-2 text-neutral-500">
                 Summary
               </p>
               <h2 className="text-2xl font-semibold tracking-tight text-neutral-950">需求摘要</h2>
@@ -412,7 +412,7 @@ export default function InquiryPage() {
 
         <section className="space-y-5">
           <div className="max-w-3xl">
-            <p className="mb-2 text-xs font-medium uppercase tracking-[0.24em] text-neutral-500">
+            <p className="eyebrow mb-2 text-neutral-500">
               Why cick tools
             </p>
             <h2 className="text-2xl font-semibold tracking-tight text-neutral-950 sm:text-3xl">
