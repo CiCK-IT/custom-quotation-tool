@@ -17,23 +17,25 @@ const initialForm = {
   quoteNumber: "QT-2026-041",
   date: "2026-04-22",
   contactPerson: "陳小姐",
-  notes: "含初稿提案、兩次修正與交付檔案整理。",
-  discount: "800",
+  notes: "此報價包含需求整理、介面設計、前端互動製作與基本上線協助。",
+  discount: "1200",
   taxRate: "5",
 };
 
 const initialItems = [
-  createItem("item-1", "品牌形象首頁設計", "18000", "1"),
-  createItem("item-2", "報價單生成流程規劃", "6800", "1"),
-  createItem("item-3", "響應式畫面調整", "3200", "2"),
+  createItem("item-1", "客製報價工具介面設計", "28000", "1"),
+  createItem("item-2", "詢價表單與欄位流程規劃", "12000", "1"),
+  createItem("item-3", "報價邏輯與金額摘要開發", "18000", "1"),
 ];
 
-const formatCurrency = (value) =>
-  new Intl.NumberFormat("zh-TW", {
-    style: "currency",
-    currency: "TWD",
+const formatCurrency = (value) => {
+  const amount = Math.round(Number.isFinite(value) ? value : 0);
+  const formatted = new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 0,
-  }).format(Number.isFinite(value) ? value : 0);
+  }).format(amount);
+
+  return `NT$${formatted}`;
+};
 
 const toNumber = (value) => {
   const parsed = Number(value);
@@ -48,14 +50,19 @@ const escapeHtml = (value) =>
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 
-const formatPlainDate = (value) => value || "未填寫";
+const formatPlainDate = (value) => {
+  if (!value) {
+    return "未填寫";
+  }
+
+  return value.replaceAll("-", "/");
+};
 
 function buildQuotePrintHtml({ form, items, totals }) {
   const rows = items
     .map(
-      (item, index) => `
+      (item) => `
         <tr>
-          <td>${index + 1}</td>
           <td>${escapeHtml(item.name || "未命名品項")}</td>
           <td class="numeric">${formatCurrency(toNumber(item.price))}</td>
           <td class="numeric">${toNumber(item.quantity)}</td>
@@ -73,7 +80,7 @@ function buildQuotePrintHtml({ form, items, totals }) {
         <style>
           @page {
             size: A4;
-            margin: 16mm;
+            margin: 0;
           }
 
           * {
@@ -91,6 +98,8 @@ function buildQuotePrintHtml({ form, items, totals }) {
 
           .sheet {
             width: 100%;
+            min-height: 297mm;
+            padding: 16mm;
           }
 
           .topbar {
@@ -293,7 +302,6 @@ function buildQuotePrintHtml({ form, items, totals }) {
           <table>
             <thead>
               <tr>
-                <th style="width: 44px;">#</th>
                 <th>品項</th>
                 <th class="numeric">單價</th>
                 <th class="numeric">數量</th>
@@ -642,7 +650,7 @@ export default function QuoteGenerator() {
                           className="field"
                           value={item.name}
                           onChange={(event) => updateItem(item.id, "name", event.target.value)}
-                          placeholder="例如：網站首頁視覺設計"
+                          placeholder="例如：報價工具介面設計"
                         />
                       </Field>
                       <Field label="單價">
@@ -750,7 +758,7 @@ export default function QuoteGenerator() {
                   <div className="mt-5 grid gap-4 sm:grid-cols-2">
                     <div>
                       <p className="text-sm text-neutral-500">日期</p>
-                      <p className="font-ui mt-1 font-medium text-neutral-900">{form.date || "-"}</p>
+                      <p className="font-ui mt-1 font-medium text-neutral-900">{formatPlainDate(form.date)}</p>
                     </div>
                     <div>
                       <p className="text-sm text-neutral-500">聯絡人</p>
