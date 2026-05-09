@@ -167,21 +167,6 @@ export default function InquiryPage() {
                 </p>
               </div>
 
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <a
-                  href="#inquiry-form"
-                  className="inline-flex items-center justify-center rounded-full bg-neutral-950 px-6 py-3 text-sm font-medium text-white transition hover:bg-neutral-800"
-                >
-                  預約客製報價
-                </a>
-                <a
-                  href="#suitable-needs"
-                  className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white/80 px-6 py-3 text-sm font-medium text-neutral-800 transition hover:bg-white"
-                >
-                  查看適合需求
-                </a>
-              </div>
-
               <div className="grid max-w-2xl gap-3 sm:grid-cols-2">
                 <div className="rounded-[24px] border border-[#d8c7a5]/30 bg-white/72 p-3.5 shadow-[0_10px_26px_rgba(17,17,17,0.035)] sm:p-4">
                   <p className="text-sm font-semibold text-neutral-950">商業合作詢價入口</p>
@@ -387,7 +372,7 @@ export default function InquiryPage() {
                 aria-live="polite"
                 className="mt-6 rounded-[24px] border border-[#d8c7a5]/70 bg-[#f2ede5]/80 px-5 py-4 text-sm leading-7 text-neutral-800"
               >
-                需求已送出，感謝你的填寫。這是作品集 demo 版本，目前會儲存在本機瀏覽器供需求管理中心查看，未來可串接 Email、Google Sheet 或 Supabase 收集資料。
+                需求已送出，感謝你的填寫。這是作品集 demo 版本，目前僅在本機瀏覽器保留 demo 資料，未來可串接 Email、Google Sheet 或 Supabase 收集資料。
               </div>
             ) : null}
           </form>
