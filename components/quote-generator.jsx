@@ -554,28 +554,28 @@ export default function QuoteGenerator() {
               </div>
             </div>
 
-            <div className="fade-up-delay relative">
-              <div className="absolute inset-0 -z-10 translate-x-6 translate-y-6 rounded-[32px] bg-[linear-gradient(135deg,rgba(216,199,165,0.85),rgba(255,255,255,0.25))] blur-2xl" />
-              <div className="soft-ring rounded-[32px] border-white/10 bg-[linear-gradient(150deg,#171717_0%,#0f0f0f_100%)] p-3.5 text-white shadow-[0_30px_80px_rgba(17,17,17,0.3)] sm:p-4">
-                <div className="mb-4 flex items-center justify-between">
-                  <div>
+            <div className="fade-up-delay relative min-w-0 overflow-hidden">
+              <div className="absolute inset-0 -z-10 translate-x-3 translate-y-5 rounded-[32px] bg-[linear-gradient(135deg,rgba(216,199,165,0.85),rgba(255,255,255,0.25))] blur-2xl sm:translate-x-6 sm:translate-y-6" />
+              <div className="soft-ring min-w-0 overflow-hidden rounded-[32px] border-white/10 bg-[linear-gradient(150deg,#171717_0%,#0f0f0f_100%)] p-3.5 text-white shadow-[0_30px_80px_rgba(17,17,17,0.3)] sm:p-4">
+                <div className="mb-4 grid min-w-0 gap-3 sm:flex sm:items-center sm:justify-between">
+                  <div className="min-w-0">
                     <p className="eyebrow eyebrow-dark">工具預覽</p>
                     <p className="mt-2 text-lg font-semibold">報價摘要面板</p>
                   </div>
-                  <div className="font-ui rounded-full bg-white/10 px-3 py-1 text-xs font-medium tracking-[0.18em] text-white/72 uppercase">
+                  <div className="font-ui w-fit max-w-full rounded-full bg-white/10 px-3 py-1 text-xs font-medium tracking-[0.18em] text-white/72 uppercase">
                     Live Demo
                   </div>
                 </div>
 
-                <div className="rounded-[28px] border border-white/10 bg-white/[0.075] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] sm:p-5">
-                  <div className="mb-5 flex items-start justify-between gap-4 border-b border-white/10 pb-5">
-                    <div>
+                <div className="min-w-0 overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.075] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] sm:p-5">
+                  <div className="mb-5 grid min-w-0 gap-4 border-b border-white/10 pb-5 sm:flex sm:items-start sm:justify-between">
+                    <div className="min-w-0">
                       <p className="text-sm text-white/50">客戶</p>
-                      <p className="mt-1 text-xl font-semibold">{form.customerName || "未填寫客戶名稱"}</p>
+                      <p className="mt-1 truncate text-xl font-semibold">{form.customerName || "未填寫客戶名稱"}</p>
                     </div>
-                    <div className="text-right">
+                    <div className="min-w-0 text-left sm:text-right">
                       <p className="text-sm text-white/50">編號</p>
-                      <p className="font-ui mt-1 font-medium">{form.quoteNumber || "自動產生中"}</p>
+                      <p className="font-ui mt-1 truncate font-medium">{form.quoteNumber || "自動產生中"}</p>
                     </div>
                   </div>
 
@@ -583,7 +583,7 @@ export default function QuoteGenerator() {
                     {computedItems.slice(0, 3).map((item) => (
                       <div
                         key={item.id}
-                        className="flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3"
+                        className="grid min-w-0 gap-2 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 sm:flex sm:items-center sm:justify-between sm:gap-4"
                       >
                         <div className="min-w-0">
                           <p className="truncate text-sm font-medium text-white">
@@ -593,7 +593,7 @@ export default function QuoteGenerator() {
                             {toNumber(item.quantity)} x {formatCurrency(toNumber(item.price))}
                           </p>
                         </div>
-                        <p className="font-ui text-sm font-semibold">{formatCurrency(item.subtotal)}</p>
+                        <p className="font-ui shrink-0 text-sm font-semibold">{formatCurrency(item.subtotal)}</p>
                       </div>
                     ))}
                   </div>
