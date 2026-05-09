@@ -4,7 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-export default function SiteNav({ actionHref = "/", actionLabel = "返回首頁" }) {
+export default function SiteNav({
+  actionHref = "/",
+  actionLabel = "返回首頁",
+  brandLabel = "客製報價工具",
+  secondaryActionHref = "",
+  secondaryActionLabel = "",
+}) {
   const [logoFailed, setLogoFailed] = useState(false);
 
   return (
@@ -34,17 +40,27 @@ export default function SiteNav({ actionHref = "/", actionLabel = "返回首頁"
           <span className="flex min-w-0 items-center text-neutral-300">
             <span className="mx-1.5 sm:mx-2">/</span>
             <span className="truncate text-xs font-medium tracking-[0.04em] text-neutral-600 sm:text-sm">
-              客製報價工具
+              {brandLabel}
             </span>
           </span>
         </span>
       </Link>
-      <Link
-        href={actionHref}
-        className="inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-neutral-300 bg-white/85 px-5 py-2.5 text-sm font-medium text-neutral-800 transition hover:bg-white"
-      >
-        {actionLabel}
-      </Link>
+      <div className="flex shrink-0 flex-wrap items-center gap-2">
+        <Link
+          href={actionHref}
+          className="inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-neutral-300 bg-white/85 px-5 py-2.5 text-sm font-medium text-neutral-800 transition hover:bg-white"
+        >
+          {actionLabel}
+        </Link>
+        {secondaryActionHref && secondaryActionLabel ? (
+          <Link
+            href={secondaryActionHref}
+            className="inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-neutral-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-neutral-800"
+          >
+            {secondaryActionLabel}
+          </Link>
+        ) : null}
+      </div>
     </nav>
   );
 }

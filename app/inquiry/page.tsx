@@ -30,6 +30,8 @@ const timelineOptions = [
   "尚未確定",
 ];
 
+const inquiryStorageKey = "cick-tools-inquiries";
+
 const processSteps = [
   "初步需求確認",
   "功能範圍評估",
@@ -119,6 +121,23 @@ export default function InquiryPage() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const inquiry = {
+      id: `inq-${Date.now()}`,
+      submittedAt: new Date().toISOString(),
+      status: "新需求",
+      internalNote: "",
+      ...form,
+    };
+
+    try {
+      const stored = window.localStorage.getItem(inquiryStorageKey);
+      const current = stored ? JSON.parse(stored) : [];
+      const next = Array.isArray(current) ? [inquiry, ...current] : [inquiry];
+      window.localStorage.setItem(inquiryStorageKey, JSON.stringify(next));
+    } catch {
+      // Demo storage is best-effort; the visible success state should still work.
+    }
+
     setSubmitted(true);
   };
 
@@ -368,7 +387,7 @@ export default function InquiryPage() {
                 aria-live="polite"
                 className="mt-6 rounded-[24px] border border-[#d8c7a5]/70 bg-[#f2ede5]/80 px-5 py-4 text-sm leading-7 text-neutral-800"
               >
-                需求已送出，感謝你的填寫。這是作品集 demo 版本，未來可串接 Email、Google Sheet 或 Supabase 收集資料。
+                需求已送出，感謝你的填寫。這是作品集 demo 版本，目前會儲存在本機瀏覽器供需求管理中心查看，未來可串接 Email、Google Sheet 或 Supabase 收集資料。
               </div>
             ) : null}
           </form>
