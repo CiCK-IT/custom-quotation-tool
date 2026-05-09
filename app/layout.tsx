@@ -25,6 +25,10 @@ const notoSerifTc = Noto_Serif_TC({
 export const metadata = {
   title: "客製化報價單生成器",
   description: "高質感、現代感的客製化報價單生成器作品展示頁。",
+  icons: {
+    icon: "/images/cick_icon_black_transparent.png",
+    apple: "/images/cick_icon_black_transparent.png",
+  },
 };
 
 export default function RootLayout({ children }) {
