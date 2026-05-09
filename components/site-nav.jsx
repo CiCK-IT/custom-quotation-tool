@@ -6,7 +6,7 @@ export default function SiteNav({ actionHref = "/", actionLabel = "返回首頁"
       aria-label="網站導覽"
       className="flex flex-col gap-3 rounded-full border border-white/70 bg-white/55 px-4 py-3 shadow-[0_12px_36px_rgba(17,17,17,0.04)] backdrop-blur sm:flex-row sm:items-center sm:justify-between sm:px-5"
     >
-      <Link href="/" className="text-sm font-semibold tracking-tight text-neutral-950 sm:text-base">
+      <Link href="/" className="font-ui text-sm font-semibold tracking-[0.02em] text-neutral-950 sm:text-base">
         cick tools / 客製報價工具
       </Link>
       <Link

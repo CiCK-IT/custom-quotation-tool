@@ -11,7 +11,7 @@ export default function BrandFooter() {
             cick tools 專注於打造高質感、實用且可延伸的客製化商業工具。希望每一個工具不只是能完成任務，也能讓流程更清楚、溝通更有效率，並呈現更好的品牌體驗。
           </p>
         </div>
-        <p className="text-sm font-medium text-neutral-500">Designed & built by cick tools.</p>
+        <p className="font-ui text-sm font-medium tracking-[0.04em] text-neutral-500">Designed & built by cick tools.</p>
       </div>
     </footer>
   );

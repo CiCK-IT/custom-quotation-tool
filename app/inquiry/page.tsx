@@ -130,15 +130,15 @@ export default function InquiryPage() {
         <section className="glass-panel fade-up overflow-hidden rounded-[36px] px-6 py-9 sm:px-8 lg:px-10 lg:py-12">
           <div className="grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
             <div className="space-y-6">
-              <div className="inline-flex items-center rounded-full border border-white/70 bg-white/65 px-4 py-2 text-xs font-medium tracking-[0.22em] text-neutral-600 uppercase">
+              <div className="eyebrow text-neutral-600">
                 客製需求填寫
               </div>
 
               <div className="space-y-4">
-                <h1 className="font-display text-4xl font-semibold leading-tight text-neutral-950 sm:text-5xl lg:text-6xl">
+                <h1 className="font-display max-w-[10.5ch] text-4xl text-neutral-950 sm:max-w-[11.5ch] sm:text-5xl lg:max-w-[12ch] lg:text-6xl">
                   把你的流程，整理成更好用的數位工具
                 </h1>
-                <p className="max-w-2xl text-base leading-8 text-neutral-600 sm:text-lg">
+                <p className="max-w-2xl text-base leading-8 text-neutral-600 sm:text-lg sm:leading-8">
                   不只是製作表單，而是協助你整理需求、規劃流程，打造更適合報價、接案、服務與客戶溝通的客製工具。
                 </p>
               </div>
@@ -177,10 +177,12 @@ export default function InquiryPage() {
             <aside className="soft-ring rounded-[32px] bg-neutral-950 p-5 text-white shadow-[0_24px_70px_rgba(17,17,17,0.2)] sm:p-6">
               <div className="mb-6 flex items-center justify-between gap-4">
                 <div>
-                  <p className="eyebrow text-white/45">Process</p>
+                  <p className="eyebrow border-white/14 bg-white/12 text-white/78">Process</p>
                   <p className="mt-2 text-xl font-semibold">合作流程</p>
                 </div>
-                <span className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">Demo</span>
+                <span className="font-ui rounded-full bg-white/10 px-3 py-1 text-xs font-medium tracking-[0.18em] text-white/72 uppercase">
+                  Demo
+                </span>
               </div>
               <div className="space-y-3">
                 {processSteps.map((step, index) => (
@@ -188,7 +190,7 @@ export default function InquiryPage() {
                     key={step}
                     className="flex items-center gap-4 rounded-[22px] border border-white/10 bg-white/[0.04] px-4 py-3"
                   >
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-sm font-semibold text-neutral-950">
+                    <span className="font-ui flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-sm font-semibold text-neutral-950">
                       {index + 1}
                     </span>
                     <span className="text-sm font-medium text-white/90">{step}</span>
@@ -380,7 +382,7 @@ export default function InquiryPage() {
                     key={label}
                     className="rounded-[22px] border border-white/80 bg-white/70 px-4 py-3"
                   >
-                    <p className="text-xs font-medium text-neutral-500">{label}</p>
+                    <p className="font-ui text-xs font-medium tracking-[0.12em] text-neutral-500">{label}</p>
                     <p className="mt-1 text-sm font-semibold text-neutral-950">{value}</p>
                   </div>
                 ))}

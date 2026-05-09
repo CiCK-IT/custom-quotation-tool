@@ -70,7 +70,9 @@ function SummaryRow({ label, value, emphasized = false }) {
   return (
     <div className="flex items-center justify-between gap-4">
       <span className="text-sm text-white/72">{label}</span>
-      <span className={emphasized ? "text-lg font-semibold text-white" : "font-medium text-white/92"}>
+      <span
+        className={`font-ui ${emphasized ? "text-lg font-semibold text-white" : "font-medium text-white/92"}`}
+      >
         {value}
       </span>
     </div>
@@ -131,17 +133,17 @@ export default function QuoteGenerator() {
         <section className="glass-panel fade-up overflow-hidden rounded-[36px] px-6 py-8 sm:px-8 lg:px-10 lg:py-10">
           <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
             <div className="space-y-7">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/60 px-4 py-2 text-xs font-medium tracking-[0.2em] text-neutral-600 uppercase">
+              <div className="eyebrow text-neutral-600">
                 客製化報價流程
                 <span className="h-1.5 w-1.5 rounded-full bg-neutral-900" />
                 即時生成
               </div>
 
               <div className="space-y-4">
-                <h1 className="font-display text-4xl font-semibold leading-tight text-neutral-950 sm:text-5xl lg:text-6xl">
+                <h1 className="font-display max-w-[8.5ch] text-4xl text-neutral-950 sm:max-w-[9ch] sm:text-5xl lg:text-6xl">
                   客製化報價單生成器
                 </h1>
-                <p className="max-w-2xl text-base leading-8 text-neutral-600 sm:text-lg">
+                <p className="max-w-2xl text-base leading-8 text-neutral-600 sm:text-lg sm:leading-8">
                   以高質感介面整理報價流程，讓商務提案、費用計算與對外溝通一次到位。這是一個適合放進作品集展示，也能作為真實商業工具 demo 的前端作品。
                 </p>
               </div>
@@ -180,10 +182,12 @@ export default function QuoteGenerator() {
               <div className="soft-ring rounded-[32px] bg-[#171717] p-4 text-white shadow-[0_24px_70px_rgba(17,17,17,0.25)]">
                 <div className="mb-4 flex items-center justify-between">
                   <div>
-                    <p className="eyebrow text-white/50">工具預覽</p>
+                    <p className="eyebrow border-white/14 bg-white/12 text-white/78">工具預覽</p>
                     <p className="mt-2 text-lg font-semibold">報價摘要面板</p>
                   </div>
-                  <div className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">Live Demo</div>
+                  <div className="font-ui rounded-full bg-white/10 px-3 py-1 text-xs font-medium tracking-[0.18em] text-white/72 uppercase">
+                    Live Demo
+                  </div>
                 </div>
 
                 <div className="rounded-[28px] bg-white/8 p-5">
@@ -194,7 +198,7 @@ export default function QuoteGenerator() {
                     </div>
                     <div className="text-right">
                       <p className="text-sm text-white/50">編號</p>
-                      <p className="mt-1 font-medium">{form.quoteNumber || "自動產生中"}</p>
+                      <p className="font-ui mt-1 font-medium">{form.quoteNumber || "自動產生中"}</p>
                     </div>
                   </div>
 
@@ -208,21 +212,21 @@ export default function QuoteGenerator() {
                           <p className="truncate text-sm font-medium text-white">
                             {item.name || "未命名品項"}
                           </p>
-                          <p className="mt-1 text-xs text-white/45">
+                          <p className="font-ui mt-1 text-xs text-white/50">
                             {toNumber(item.quantity)} x {formatCurrency(toNumber(item.price))}
                           </p>
                         </div>
-                        <p className="text-sm font-semibold">{formatCurrency(item.subtotal)}</p>
+                        <p className="font-ui text-sm font-semibold">{formatCurrency(item.subtotal)}</p>
                       </div>
                     ))}
                   </div>
 
                   <div className="mt-5 rounded-[24px] bg-white px-5 py-4 text-neutral-950">
-                    <div className="flex items-center justify-between text-sm text-neutral-500">
+                    <div className="font-ui flex items-center justify-between text-sm text-neutral-500">
                       <span>最終總金額</span>
                       <span>含稅</span>
                     </div>
-                    <p className="mt-2 text-3xl font-semibold tracking-tight">{formatCurrency(totals.total)}</p>
+                    <p className="font-ui mt-2 text-3xl font-semibold tracking-tight">{formatCurrency(totals.total)}</p>
                   </div>
                 </div>
               </div>
@@ -339,7 +343,7 @@ export default function QuoteGenerator() {
                         />
                       </Field>
                       <Field label="小計">
-                        <div className="field flex min-h-[54px] items-center justify-end bg-[rgba(23,23,23,0.03)] font-semibold">
+                        <div className="field font-ui flex min-h-[54px] items-center justify-end bg-[rgba(23,23,23,0.03)] font-semibold">
                           {formatCurrency(item.subtotal)}
                         </div>
                       </Field>
@@ -416,14 +420,14 @@ export default function QuoteGenerator() {
                     </div>
                     <div className="text-right">
                       <p className="text-sm text-neutral-500">報價單編號</p>
-                      <p className="mt-1 font-medium text-neutral-900">{form.quoteNumber || "-"}</p>
+                      <p className="font-ui mt-1 font-medium text-neutral-900">{form.quoteNumber || "-"}</p>
                     </div>
                   </div>
 
                   <div className="mt-5 grid gap-4 sm:grid-cols-2">
                     <div>
                       <p className="text-sm text-neutral-500">日期</p>
-                      <p className="mt-1 font-medium text-neutral-900">{form.date || "-"}</p>
+                      <p className="font-ui mt-1 font-medium text-neutral-900">{form.date || "-"}</p>
                     </div>
                     <div>
                       <p className="text-sm text-neutral-500">聯絡人</p>
@@ -439,11 +443,11 @@ export default function QuoteGenerator() {
                       <div key={item.id} className="flex items-center justify-between gap-4 rounded-2xl bg-neutral-50 px-4 py-3">
                         <div className="min-w-0">
                           <p className="truncate text-sm font-medium text-neutral-900">{item.name || "未命名品項"}</p>
-                          <p className="mt-1 text-xs text-neutral-500">
+                          <p className="font-ui mt-1 text-xs text-neutral-500">
                             數量 {toNumber(item.quantity)} / 單價 {formatCurrency(toNumber(item.price))}
                           </p>
                         </div>
-                        <p className="text-sm font-semibold text-neutral-900">{formatCurrency(item.subtotal)}</p>
+                        <p className="font-ui text-sm font-semibold text-neutral-900">{formatCurrency(item.subtotal)}</p>
                       </div>
                     ))}
                   </div>
@@ -458,7 +462,7 @@ export default function QuoteGenerator() {
 
                 <div className="rounded-[28px] bg-[linear-gradient(180deg,#ffffff_0%,#f2ede5_100%)] p-5">
                   <p className="text-sm text-neutral-500">最終報價</p>
-                  <p className="mt-2 text-3xl font-semibold tracking-tight text-neutral-950">
+                  <p className="font-ui mt-2 text-3xl font-semibold tracking-tight text-neutral-950">
                     {formatCurrency(totals.total)}
                   </p>
                 </div>

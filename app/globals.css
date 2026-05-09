@@ -29,8 +29,8 @@ body {
     linear-gradient(180deg, #faf8f4 0%, var(--background) 100%);
   color: var(--foreground);
   font-family:
-    var(--font-manrope),
     var(--font-noto-sans-tc),
+    var(--font-manrope),
     "PingFang TC",
     "Microsoft JhengHei",
     sans-serif;
@@ -38,9 +38,9 @@ body {
   font-weight: 400;
   line-height: 1.75;
   letter-spacing: 0;
-  text-rendering: optimizeLegibility;
   font-feature-settings: "kern" 1, "liga" 1, "tnum" 1;
   font-variant-numeric: tabular-nums;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -59,13 +59,25 @@ button {
 
 .font-display {
   font-family:
+    var(--font-noto-serif-tc),
+    "Noto Serif TC",
+    "Songti TC",
+    serif;
+  font-weight: 600;
+  line-height: 1.14;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.font-ui {
+  font-family:
     var(--font-manrope),
     var(--font-noto-sans-tc),
     "PingFang TC",
     "Microsoft JhengHei",
     sans-serif;
-  font-weight: 600;
-  letter-spacing: 0;
+  font-feature-settings: "kern" 1, "liga" 1, "tnum" 1;
+  font-variant-numeric: tabular-nums;
 }
 
 .glass-panel {
@@ -119,10 +131,27 @@ button {
 }
 
 .eyebrow {
-  font-size: 0.74rem;
-  font-weight: 500;
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(109, 102, 94, 0.12);
+  background: rgba(242, 237, 229, 0.78);
+  padding: 0.5rem 0.85rem;
+  font-family:
+    var(--font-manrope),
+    var(--font-noto-sans-tc),
+    "PingFang TC",
+    "Microsoft JhengHei",
+    sans-serif;
+  font-size: 0.71rem;
+  font-weight: 600;
+  line-height: 1;
   letter-spacing: 0.22em;
   text-transform: uppercase;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .fade-up {
