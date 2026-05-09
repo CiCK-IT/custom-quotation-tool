@@ -5,6 +5,7 @@ import SiteNav from "@/components/site-nav";
 import { useEffect, useMemo, useState } from "react";
 
 const quoteStorageKey = "cick-tools-quotes";
+const statusOptions = ["草稿", "已送出", "已完成"];
 
 const demoQuotes = [
   {
@@ -112,6 +113,18 @@ export default function AdminQuotesPage() {
     [quotes, selectedId]
   );
 
+  const updateQuoteStatus = (id, status) => {
+    const nextQuotes = quotes.map((quote) => (quote.id === id ? { ...quote, status } : quote));
+
+    setQuotes(nextQuotes);
+
+    try {
+      window.localStorage.setItem(quoteStorageKey, JSON.stringify(nextQuotes));
+    } catch {
+      // Demo persistence is best-effort; the in-page state should still update immediately.
+    }
+  };
+
   const stats = [
     { label: "報價單數", value: quotes.length },
     { label: "草稿", value: quotes.filter((quote) => quote.status === "草稿").length },
@@ -207,9 +220,9 @@ export default function AdminQuotesPage() {
                         {formatCurrency(quote.total)}
                       </span>
                     </div>
-                    <div className="flex flex-wrap items-center gap-2 xl:justify-end">
+                    <div className="grid gap-2 sm:flex sm:flex-wrap sm:items-center xl:justify-end">
                       <span
-                        className={`rounded-full border px-3 py-1.5 text-xs font-semibold ${
+                        className={`inline-flex w-full items-center justify-center whitespace-nowrap rounded-full border px-3 py-1.5 text-xs font-semibold sm:w-auto ${
                           statusStyles[quote.status] || statusStyles["草稿"]
                         }`}
                       >
@@ -218,7 +231,7 @@ export default function AdminQuotesPage() {
                       <button
                         type="button"
                         onClick={() => setSelectedId(quote.id)}
-                        className="rounded-full border border-neutral-300 bg-white/90 px-4 py-2 text-sm font-medium text-neutral-800 transition hover:bg-white"
+                        className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-full border border-neutral-300 bg-white/90 px-4 py-2 text-sm font-medium text-neutral-800 transition hover:bg-white sm:w-auto"
                       >
                         查看詳情
                       </button>
@@ -245,7 +258,6 @@ export default function AdminQuotesPage() {
                   ["客戶名稱", selectedQuote.customerName],
                   ["日期", selectedQuote.date],
                   ["聯絡人", selectedQuote.contactName],
-                  ["狀態", selectedQuote.status],
                   ["總金額", formatCurrency(selectedQuote.total)],
                 ].map(([label, value]) => (
                   <div key={label} className="rounded-[22px] border border-[#d8c7a5]/25 bg-white/74 p-4">
@@ -255,6 +267,20 @@ export default function AdminQuotesPage() {
                     <p className="mt-1 text-sm font-semibold text-neutral-950">{value}</p>
                   </div>
                 ))}
+                <label className="rounded-[22px] border border-[#d8c7a5]/25 bg-white/74 p-4">
+                  <span className="font-ui text-xs font-medium tracking-[0.12em] text-neutral-500">
+                    狀態
+                  </span>
+                  <select
+                    className="mt-2 w-full rounded-2xl border border-[#d8c7a5]/35 bg-white px-3 py-2.5 text-sm font-semibold text-neutral-950 outline-none transition focus:border-neutral-900"
+                    value={selectedQuote.status}
+                    onChange={(event) => updateQuoteStatus(selectedQuote.id, event.target.value)}
+                  >
+                    {statusOptions.map((status) => (
+                      <option key={status}>{status}</option>
+                    ))}
+                  </select>
+                </label>
               </div>
 
               <div className="rounded-[24px] border border-[#d8c7a5]/25 bg-white/74 p-4">
