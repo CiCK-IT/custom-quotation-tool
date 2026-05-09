@@ -135,7 +135,7 @@ export default function InquiryPage() {
               </div>
 
               <div className="space-y-4">
-                <h1 className="font-display max-w-[10.5ch] text-4xl text-neutral-950 sm:max-w-[11.5ch] sm:text-5xl lg:max-w-[12ch] lg:text-6xl">
+                <h1 className="font-display hero-title text-4xl text-neutral-950 sm:text-5xl lg:text-6xl">
                   把你的流程，整理成更好用的數位工具
                 </h1>
                 <p className="max-w-2xl text-base leading-8 text-neutral-600 sm:text-lg sm:leading-8">
@@ -159,13 +159,13 @@ export default function InquiryPage() {
               </div>
 
               <div className="grid max-w-2xl gap-3 sm:grid-cols-2">
-                <div className="rounded-[24px] border border-white/80 bg-white/65 p-4">
+                <div className="rounded-[24px] border border-[#d8c7a5]/30 bg-white/72 p-4 shadow-[0_10px_26px_rgba(17,17,17,0.035)]">
                   <p className="text-sm font-semibold text-neutral-950">商業合作詢價入口</p>
                   <p className="mt-2 text-sm leading-7 text-neutral-600">
                     聚焦專案需求、流程工具與客製開發方向，而不是一般聯絡表單。
                   </p>
                 </div>
-                <div className="rounded-[24px] border border-white/80 bg-white/65 p-4">
+                <div className="rounded-[24px] border border-[#d8c7a5]/30 bg-white/72 p-4 shadow-[0_10px_26px_rgba(17,17,17,0.035)]">
                   <p className="text-sm font-semibold text-neutral-950">先整理，再討論</p>
                   <p className="mt-2 text-sm leading-7 text-neutral-600">
                     讓合作前的範圍、預算與時程先有清楚輪廓。
@@ -174,10 +174,10 @@ export default function InquiryPage() {
               </div>
             </div>
 
-            <aside className="soft-ring rounded-[32px] bg-neutral-950 p-5 text-white shadow-[0_24px_70px_rgba(17,17,17,0.2)] sm:p-6">
+            <aside className="soft-ring rounded-[32px] border-white/10 bg-[linear-gradient(150deg,#171717_0%,#0f0f0f_100%)] p-5 text-white shadow-[0_30px_80px_rgba(17,17,17,0.26)] sm:p-6">
               <div className="mb-6 flex items-center justify-between gap-4">
                 <div>
-                  <p className="eyebrow border-white/14 bg-white/12 text-white/78">Process</p>
+                  <p className="eyebrow eyebrow-dark">Process</p>
                   <p className="mt-2 text-xl font-semibold">合作流程</p>
                 </div>
                 <span className="font-ui rounded-full bg-white/10 px-3 py-1 text-xs font-medium tracking-[0.18em] text-white/72 uppercase">
@@ -188,7 +188,7 @@ export default function InquiryPage() {
                 {processSteps.map((step, index) => (
                   <div
                     key={step}
-                    className="flex items-center gap-4 rounded-[22px] border border-white/10 bg-white/[0.04] px-4 py-3"
+                    className="flex items-center gap-4 rounded-[22px] border border-white/10 bg-white/[0.055] px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
                   >
                     <span className="font-ui flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-sm font-semibold text-neutral-950">
                       {index + 1}
@@ -218,7 +218,7 @@ export default function InquiryPage() {
             {suitableNeeds.map((need, index) => (
               <article
                 key={need.title}
-                className="soft-ring rounded-[28px] border border-white/80 bg-white/70 p-5 transition hover:-translate-y-0.5 hover:bg-white/85 hover:shadow-[0_16px_40px_rgba(17,17,17,0.06)]"
+                className="soft-ring rounded-[28px] border border-[#d8c7a5]/28 bg-white/74 p-5 transition hover:-translate-y-0.5 hover:bg-white/88 hover:shadow-[0_18px_44px_rgba(17,17,17,0.07)]"
               >
                 <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-full bg-[#f2ede5] text-sm font-semibold text-neutral-950">
                   {index + 1}
@@ -380,7 +380,7 @@ export default function InquiryPage() {
                 ].map(([label, value]) => (
                   <div
                     key={label}
-                    className="rounded-[22px] border border-white/80 bg-white/70 px-4 py-3"
+                    className="rounded-[22px] border border-[#d8c7a5]/25 bg-white/74 px-4 py-3 shadow-[0_10px_24px_rgba(17,17,17,0.03)]"
                   >
                     <p className="font-ui text-xs font-medium tracking-[0.12em] text-neutral-500">{label}</p>
                     <p className="mt-1 text-sm font-semibold text-neutral-950">{value}</p>
@@ -389,20 +389,20 @@ export default function InquiryPage() {
               </div>
             </div>
 
-            <div className="soft-ring rounded-[30px] bg-[#171717] p-6 text-white shadow-[0_18px_45px_rgba(17,17,17,0.14)]">
+            <div className="soft-ring rounded-[30px] border-white/10 bg-[linear-gradient(150deg,#171717_0%,#0f0f0f_100%)] p-6 text-white shadow-[0_22px_55px_rgba(17,17,17,0.2)]">
               <p className="text-lg font-semibold">不知道怎麼描述需求也沒關係</p>
               <p className="mt-4 text-sm leading-7 text-white/70">
                 你可以先簡單描述目前遇到的流程問題，例如報價太慢、資料分散、客戶填寫不完整，後續再一起整理成適合製作的工具方向。
               </p>
             </div>
 
-            <div className="soft-ring rounded-[30px] bg-white/70 p-6">
+            <div className="soft-ring rounded-[30px] border-[#d8c7a5]/28 bg-white/74 p-6">
               <p className="text-lg font-semibold text-neutral-950">適合討論的內容</p>
               <div className="mt-4 space-y-3">
                 {inquiryFitNotes.map((note) => (
                   <p
                     key={note}
-                    className="rounded-[20px] border border-white/80 bg-white/65 px-4 py-3 text-sm leading-7 text-neutral-600"
+                    className="rounded-[20px] border border-[#d8c7a5]/22 bg-white/72 px-4 py-3 text-sm leading-7 text-neutral-600"
                   >
                     {note}
                   </p>
@@ -429,7 +429,7 @@ export default function InquiryPage() {
             {cickReasons.map((reason) => (
               <article
                 key={reason.title}
-                className="soft-ring rounded-[28px] border border-white/80 bg-white/70 p-6"
+                className="soft-ring rounded-[28px] border border-[#d8c7a5]/28 bg-white/74 p-6"
               >
                 <p className="text-lg font-semibold text-neutral-950">{reason.title}</p>
                 <p className="mt-3 text-sm leading-7 text-neutral-600">{reason.description}</p>
