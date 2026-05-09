@@ -3,9 +3,10 @@
 import BrandFooter from "@/components/brand-footer";
 import SiteNav from "@/components/site-nav";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 const inquiryStorageKey = "cick-tools-inquiries";
+const quoteStorageKey = "cick-tools-quotes";
 
 const demoQuotes = [
   {
@@ -43,6 +44,12 @@ const demoInquiryStats = {
   completed: 1,
 };
 
+const demoQuoteStats = {
+  total: demoQuotes.length,
+  pending: demoQuotes.filter((quote) => quote.status !== "已完成").length,
+  completed: demoQuotes.filter((quote) => quote.status === "已完成").length,
+};
+
 const getInquiryStats = () => {
   try {
     const stored = window.localStorage.getItem(inquiryStorageKey);
@@ -65,21 +72,34 @@ const getInquiryStats = () => {
   }
 };
 
+const getQuoteStats = () => {
+  try {
+    const stored = window.localStorage.getItem(quoteStorageKey);
+    const parsed = stored ? JSON.parse(stored) : null;
+    const records = Array.isArray(parsed) && parsed.length > 0 ? parsed : null;
+
+    if (!records) {
+      return demoQuoteStats;
+    }
+
+    return {
+      total: records.length,
+      pending: records.filter((item) => item.status !== "已完成").length,
+      completed: records.filter((item) => item.status === "已完成").length,
+    };
+  } catch {
+    return demoQuoteStats;
+  }
+};
+
 export default function AdminOverviewPage() {
   const [inquiryStats, setInquiryStats] = useState(demoInquiryStats);
+  const [quoteStats, setQuoteStats] = useState(demoQuoteStats);
 
   useEffect(() => {
     setInquiryStats(getInquiryStats());
+    setQuoteStats(getQuoteStats());
   }, []);
-
-  const quoteStats = useMemo(
-    () => ({
-      total: demoQuotes.length,
-      pending: demoQuotes.filter((quote) => quote.status !== "已完成").length,
-      completed: demoQuotes.filter((quote) => quote.status === "已完成").length,
-    }),
-    []
-  );
 
   const stats = [
     { label: "報價單數", value: quoteStats.total },

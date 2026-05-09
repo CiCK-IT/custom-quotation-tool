@@ -2,7 +2,9 @@
 
 import BrandFooter from "@/components/brand-footer";
 import SiteNav from "@/components/site-nav";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+
+const quoteStorageKey = "cick-tools-quotes";
 
 const demoQuotes = [
   {
@@ -64,19 +66,57 @@ const formatCurrency = (value) =>
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 
+const normalizeQuote = (record, index) => ({
+  id: record.id || `quote-${index}`,
+  quoteNumber: record.quoteNumber || "未填寫",
+  customerName: record.customerName || "未填寫客戶名稱",
+  date: record.date || "未填寫",
+  contactName: record.contactName || "未填寫",
+  total: Number(record.total) || 0,
+  status: statusStyles[record.status] ? record.status : "已送出",
+  note: record.note || "此報價為首頁報價工具產生的 demo 資料。",
+  items:
+    Array.isArray(record.items) && record.items.length > 0
+      ? record.items.map((item, itemIndex) => ({
+          name: item.name || `品項 ${itemIndex + 1}`,
+          quantity: Number(item.quantity) || 0,
+          subtotal: Number(item.subtotal) || 0,
+        }))
+      : [{ name: "未提供品項明細", quantity: 1, subtotal: Number(record.total) || 0 }],
+});
+
 export default function AdminQuotesPage() {
+  const [quotes, setQuotes] = useState(demoQuotes);
   const [selectedId, setSelectedId] = useState(demoQuotes[0].id);
 
+  useEffect(() => {
+    try {
+      const stored = window.localStorage.getItem(quoteStorageKey);
+      const parsed = stored ? JSON.parse(stored) : null;
+      const records = Array.isArray(parsed)
+        ? parsed.map((item, index) => normalizeQuote(item, index))
+        : [];
+
+      if (records.length > 0) {
+        setQuotes(records);
+        setSelectedId(records[0].id);
+      }
+    } catch {
+      setQuotes(demoQuotes);
+      setSelectedId(demoQuotes[0].id);
+    }
+  }, []);
+
   const selectedQuote = useMemo(
-    () => demoQuotes.find((quote) => quote.id === selectedId) || demoQuotes[0],
-    [selectedId]
+    () => quotes.find((quote) => quote.id === selectedId) || quotes[0] || demoQuotes[0],
+    [quotes, selectedId]
   );
 
   const stats = [
-    { label: "報價單數", value: demoQuotes.length },
-    { label: "草稿", value: demoQuotes.filter((quote) => quote.status === "草稿").length },
-    { label: "已送出", value: demoQuotes.filter((quote) => quote.status === "已送出").length },
-    { label: "已完成", value: demoQuotes.filter((quote) => quote.status === "已完成").length },
+    { label: "報價單數", value: quotes.length },
+    { label: "草稿", value: quotes.filter((quote) => quote.status === "草稿").length },
+    { label: "已送出", value: quotes.filter((quote) => quote.status === "已送出").length },
+    { label: "已完成", value: quotes.filter((quote) => quote.status === "已完成").length },
   ];
 
   return (
@@ -84,10 +124,8 @@ export default function AdminQuotesPage() {
       <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-6 px-4 py-5 sm:gap-8 sm:px-6 lg:px-8 lg:py-8">
         <SiteNav
           brandLabel="報價單管理"
-          actionHref="/admin"
-          actionLabel="管理中心"
-          secondaryActionHref="/"
-          secondaryActionLabel="返回首頁"
+          actionHref="/"
+          actionLabel="返回首頁"
         />
 
         <section className="glass-panel fade-up overflow-hidden rounded-[36px] px-5 py-7 sm:px-8 lg:px-10">
@@ -137,11 +175,11 @@ export default function AdminQuotesPage() {
                 <p className="eyebrow mb-2 text-neutral-500">Quotes</p>
                 <h2 className="text-2xl font-semibold tracking-tight text-neutral-950">報價單列表</h2>
               </div>
-              <p className="font-ui text-sm text-neutral-500">{demoQuotes.length} 筆</p>
+              <p className="font-ui text-sm text-neutral-500">{quotes.length} 筆</p>
             </div>
 
             <div className="space-y-3">
-              {demoQuotes.map((quote) => (
+              {quotes.map((quote) => (
                 <article
                   key={quote.id}
                   className={`rounded-[28px] border p-4 transition ${
@@ -172,7 +210,7 @@ export default function AdminQuotesPage() {
                     <div className="flex flex-wrap items-center gap-2 xl:justify-end">
                       <span
                         className={`rounded-full border px-3 py-1.5 text-xs font-semibold ${
-                          statusStyles[quote.status]
+                          statusStyles[quote.status] || statusStyles["草稿"]
                         }`}
                       >
                         {quote.status}

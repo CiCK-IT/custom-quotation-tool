@@ -28,6 +28,8 @@ const initialItems = [
   createItem("item-3", "報價邏輯與金額摘要開發", "18000", "1"),
 ];
 
+const quoteStorageKey = "cick-tools-quotes";
+
 const formatCurrency = (value) => {
   const amount = Math.round(Number.isFinite(value) ? value : 0);
   const formatted = new Intl.NumberFormat("en-US", {
@@ -389,6 +391,7 @@ function SummaryRow({ label, value, emphasized = false }) {
 export default function QuoteGenerator() {
   const [form, setForm] = useState(initialForm);
   const [items, setItems] = useState(initialItems);
+  const [saveMessage, setSaveMessage] = useState("");
 
   const computedItems = useMemo(
     () =>
@@ -432,6 +435,39 @@ export default function QuoteGenerator() {
     });
   };
 
+  const saveQuoteToAdmin = () => {
+    const quoteRecord = {
+      id: `quote-${Date.now()}`,
+      quoteNumber: form.quoteNumber || `QT-${Date.now()}`,
+      customerName: form.customerName || "未填寫客戶名稱",
+      date: formatPlainDate(form.date),
+      contactName: form.contactPerson || "未填寫",
+      total: totals.total,
+      status: "已送出",
+      note: form.notes || "無",
+      items: computedItems.map((item) => ({
+        name: item.name || "未命名品項",
+        quantity: toNumber(item.quantity),
+        subtotal: item.subtotal,
+      })),
+    };
+
+    try {
+      const stored = window.localStorage.getItem(quoteStorageKey);
+      const parsed = stored ? JSON.parse(stored) : [];
+      const records = Array.isArray(parsed) ? parsed : [];
+      const nextRecords = [
+        quoteRecord,
+        ...records.filter((record) => record.quoteNumber !== quoteRecord.quoteNumber),
+      ];
+
+      window.localStorage.setItem(quoteStorageKey, JSON.stringify(nextRecords));
+      setSaveMessage("已儲存到報價單管理，可前往報價後台查看。");
+    } catch {
+      setSaveMessage("目前瀏覽器無法寫入 demo 資料，請稍後再試。");
+    }
+  };
+
   const exportQuotePdf = () => {
     const printWindow = window.open("", "_blank", "width=920,height=720");
 
@@ -459,7 +495,12 @@ export default function QuoteGenerator() {
   return (
     <main className="relative overflow-hidden">
       <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-6 px-4 py-5 sm:gap-8 sm:px-6 lg:px-8 lg:py-8">
-        <SiteNav actionHref="/inquiry" actionLabel="預約客製報價" />
+        <SiteNav
+          actionHref="/inquiry"
+          actionLabel="預約客製報價"
+          secondaryActionHref="/admin/quotes"
+          secondaryActionLabel="查看報價後台"
+        />
 
         <section className="glass-panel fade-up overflow-hidden rounded-[36px] px-5 py-7 sm:px-8 sm:py-8 lg:px-10 lg:py-10">
           <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
@@ -810,6 +851,28 @@ export default function QuoteGenerator() {
                 >
                   匯出 PDF 報價單
                 </button>
+
+                <div className="grid gap-2 sm:grid-cols-2">
+                  <button
+                    type="button"
+                    onClick={saveQuoteToAdmin}
+                    className="inline-flex items-center justify-center rounded-full border border-[#d8c7a5]/45 bg-white/90 px-5 py-3 text-sm font-medium text-neutral-800 transition hover:bg-white"
+                  >
+                    儲存到後台
+                  </button>
+                  <Link
+                    href="/admin/quotes"
+                    className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white/80 px-5 py-3 text-sm font-medium text-neutral-800 transition hover:bg-white"
+                  >
+                    查看報價後台
+                  </Link>
+                </div>
+
+                {saveMessage ? (
+                  <p className="rounded-2xl border border-[#d8c7a5]/30 bg-[#f8f4ec]/70 px-4 py-3 text-sm leading-6 text-neutral-600">
+                    {saveMessage}
+                  </p>
+                ) : null}
               </div>
             </SectionCard>
           </div>
