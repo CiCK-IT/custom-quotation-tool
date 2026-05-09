@@ -94,20 +94,13 @@ const normalizeStatus = (status: unknown): InquiryStatus =>
   statusOptions.includes(status as InquiryStatus) ? (status as InquiryStatus) : "新需求";
 
 const formatSubmittedAt = (value: string) => {
-  const date = new Date(value);
+  const isoParts = value.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
 
-  if (Number.isNaN(date.getTime())) {
-    return "尚未紀錄";
+  if (isoParts) {
+    return `${isoParts[1]}/${isoParts[2]}/${isoParts[3]} ${isoParts[4]}:${isoParts[5]}`;
   }
 
-  return new Intl.DateTimeFormat("zh-TW", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  }).format(date);
+  return value || "尚未紀錄";
 };
 
 const normalizeInquiry = (record: Partial<InquiryRecord>, index: number): InquiryRecord => ({
