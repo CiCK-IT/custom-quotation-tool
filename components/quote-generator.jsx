@@ -40,6 +40,300 @@ const toNumber = (value) => {
   return Number.isFinite(parsed) ? parsed : 0;
 };
 
+const escapeHtml = (value) =>
+  String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+const formatPlainDate = (value) => value || "未填寫";
+
+function buildQuotePrintHtml({ form, items, totals }) {
+  const rows = items
+    .map(
+      (item, index) => `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${escapeHtml(item.name || "未命名品項")}</td>
+          <td class="numeric">${formatCurrency(toNumber(item.price))}</td>
+          <td class="numeric">${toNumber(item.quantity)}</td>
+          <td class="numeric strong">${formatCurrency(item.subtotal)}</td>
+        </tr>
+      `
+    )
+    .join("");
+
+  return `<!doctype html>
+    <html lang="zh-Hant">
+      <head>
+        <meta charset="utf-8" />
+        <title>${escapeHtml(form.quoteNumber || "quotation")} - cick tools 報價單</title>
+        <style>
+          @page {
+            size: A4;
+            margin: 16mm;
+          }
+
+          * {
+            box-sizing: border-box;
+          }
+
+          body {
+            margin: 0;
+            background: #ffffff;
+            color: #171717;
+            font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", Arial, sans-serif;
+            font-size: 12px;
+            line-height: 1.72;
+          }
+
+          .sheet {
+            width: 100%;
+          }
+
+          .topbar {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 24px;
+            border-bottom: 1px solid #ded7ca;
+            padding-bottom: 22px;
+          }
+
+          .brand {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+          }
+
+          .brand-note {
+            margin-top: 5px;
+            color: #7a7168;
+            font-size: 11px;
+          }
+
+          h1 {
+            margin: 20px 0 0;
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            line-height: 1.25;
+          }
+
+          .quote-number {
+            min-width: 180px;
+            border-radius: 16px;
+            background: #f4f1ea;
+            padding: 14px 16px;
+            text-align: right;
+          }
+
+          .quote-number span {
+            display: block;
+            color: #7a7168;
+            font-size: 10px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+          }
+
+          .quote-number strong {
+            display: block;
+            margin-top: 4px;
+            font-size: 14px;
+          }
+
+          .meta {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 22px;
+          }
+
+          .meta-card {
+            border: 1px solid #e5ded2;
+            border-radius: 14px;
+            padding: 12px 13px;
+          }
+
+          .label {
+            color: #7a7168;
+            font-size: 10px;
+            letter-spacing: 0.12em;
+          }
+
+          .value {
+            margin-top: 4px;
+            font-size: 13px;
+            font-weight: 600;
+          }
+
+          table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 26px;
+          }
+
+          th {
+            border-bottom: 1px solid #d8c7a5;
+            color: #6d665e;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            padding: 10px 8px;
+            text-align: left;
+          }
+
+          td {
+            border-bottom: 1px solid #eee8dd;
+            padding: 13px 8px;
+            vertical-align: top;
+          }
+
+          .numeric {
+            text-align: right;
+            white-space: nowrap;
+          }
+
+          .strong {
+            font-weight: 700;
+          }
+
+          .bottom {
+            display: grid;
+            grid-template-columns: 1fr 260px;
+            gap: 24px;
+            margin-top: 24px;
+            align-items: start;
+          }
+
+          .notes {
+            min-height: 116px;
+            border: 1px solid #e5ded2;
+            border-radius: 16px;
+            padding: 14px 16px;
+          }
+
+          .summary {
+            border-radius: 18px;
+            background: #171717;
+            color: #ffffff;
+            padding: 16px;
+          }
+
+          .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 7px 0;
+            color: rgba(255, 255, 255, 0.78);
+          }
+
+          .summary-row.total {
+            border-top: 1px solid rgba(255, 255, 255, 0.18);
+            margin-top: 8px;
+            padding-top: 14px;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+          }
+
+          .footer {
+            margin-top: 34px;
+            border-top: 1px solid #eee8dd;
+            padding-top: 12px;
+            color: #8a8178;
+            font-size: 10px;
+            text-align: right;
+          }
+
+          @media print {
+            body {
+              print-color-adjust: exact;
+              -webkit-print-color-adjust: exact;
+            }
+          }
+        </style>
+      </head>
+      <body>
+        <main class="sheet">
+          <section class="topbar">
+            <div>
+              <div class="brand">cick tools</div>
+              <div class="brand-note">高質感客製商業工具設計</div>
+              <h1>客製化報價單</h1>
+            </div>
+            <div class="quote-number">
+              <span>Quote No.</span>
+              <strong>${escapeHtml(form.quoteNumber || "未填寫")}</strong>
+            </div>
+          </section>
+
+          <section class="meta">
+            <div class="meta-card">
+              <div class="label">客戶名稱</div>
+              <div class="value">${escapeHtml(form.customerName || "未填寫")}</div>
+            </div>
+            <div class="meta-card">
+              <div class="label">日期</div>
+              <div class="value">${escapeHtml(formatPlainDate(form.date))}</div>
+            </div>
+            <div class="meta-card">
+              <div class="label">聯絡人</div>
+              <div class="value">${escapeHtml(form.contactPerson || "未填寫")}</div>
+            </div>
+            <div class="meta-card">
+              <div class="label">報價單編號</div>
+              <div class="value">${escapeHtml(form.quoteNumber || "未填寫")}</div>
+            </div>
+          </section>
+
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 44px;">#</th>
+                <th>品項</th>
+                <th class="numeric">單價</th>
+                <th class="numeric">數量</th>
+                <th class="numeric">小計</th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+
+          <section class="bottom">
+            <div class="notes">
+              <div class="label">備註</div>
+              <div class="value">${escapeHtml(form.notes || "無")}</div>
+            </div>
+            <div class="summary">
+              <div class="summary-row">
+                <span>小計</span>
+                <strong>${formatCurrency(totals.subtotal)}</strong>
+              </div>
+              <div class="summary-row">
+                <span>折扣</span>
+                <strong>- ${formatCurrency(totals.discount)}</strong>
+              </div>
+              <div class="summary-row">
+                <span>稅額</span>
+                <strong>${formatCurrency(totals.tax)}</strong>
+              </div>
+              <div class="summary-row total">
+                <span>總金額</span>
+                <strong>${formatCurrency(totals.total)}</strong>
+              </div>
+            </div>
+          </section>
+
+          <footer class="footer">Designed & built by cick tools.</footer>
+        </main>
+      </body>
+    </html>`;
+}
+
 function SectionCard({ eyebrow, title, description, children, className = "" }) {
   return (
     <section className={`glass-panel rounded-[32px] p-5 sm:p-8 ${className}`}>
@@ -123,6 +417,30 @@ export default function QuoteGenerator() {
       }
       return current.filter((item) => item.id !== id);
     });
+  };
+
+  const exportQuotePdf = () => {
+    const printWindow = window.open("", "_blank", "width=920,height=720");
+
+    if (!printWindow) {
+      window.alert("瀏覽器阻擋了 PDF 視窗，請允許彈出視窗後再試一次。");
+      return;
+    }
+
+    printWindow.document.open();
+    printWindow.document.write(
+      buildQuotePrintHtml({
+        form,
+        items: computedItems,
+        totals,
+      })
+    );
+    printWindow.document.close();
+    printWindow.focus();
+
+    window.setTimeout(() => {
+      printWindow.print();
+    }, 350);
   };
 
   return (
@@ -471,6 +789,14 @@ export default function QuoteGenerator() {
                     {formatCurrency(totals.total)}
                   </p>
                 </div>
+
+                <button
+                  type="button"
+                  onClick={exportQuotePdf}
+                  className="inline-flex w-full items-center justify-center rounded-full bg-neutral-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-neutral-800"
+                >
+                  匯出 PDF 報價單
+                </button>
               </div>
             </SectionCard>
           </div>
