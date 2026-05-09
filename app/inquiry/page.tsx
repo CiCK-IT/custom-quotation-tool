@@ -124,10 +124,10 @@ export default function InquiryPage() {
 
   return (
     <main className="relative overflow-hidden">
-      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-8 px-4 py-5 sm:px-6 lg:px-8 lg:py-8">
+      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-6 px-4 py-5 sm:gap-8 sm:px-6 lg:px-8 lg:py-8">
         <SiteNav actionHref="/" actionLabel="返回首頁" />
 
-        <section className="glass-panel fade-up overflow-hidden rounded-[36px] px-6 py-9 sm:px-8 lg:px-10 lg:py-12">
+        <section className="glass-panel fade-up overflow-hidden rounded-[36px] px-5 py-7 sm:px-8 sm:py-9 lg:px-10 lg:py-12">
           <div className="grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
             <div className="space-y-6">
               <div className="eyebrow text-neutral-600">
@@ -138,8 +138,13 @@ export default function InquiryPage() {
                 <h1 className="font-display hero-title text-4xl text-neutral-950 sm:text-5xl lg:text-6xl">
                   把你的流程，整理成更好用的數位工具
                 </h1>
-                <p className="max-w-2xl text-base leading-8 text-neutral-600 sm:text-lg sm:leading-8">
-                  不只是製作表單，而是協助你整理需求、規劃流程，打造更適合報價、接案、服務與客戶溝通的客製工具。
+                <p className="max-w-xl text-base leading-7 text-neutral-600 sm:max-w-2xl sm:text-lg sm:leading-8">
+                  <span className="sm:hidden">
+                    先留下流程問題與合作需求，我會協助整理成適合製作的客製工具方向。
+                  </span>
+                  <span className="hidden sm:inline">
+                    不只是製作表單，而是協助你整理需求、規劃流程，打造更適合報價、接案、服務與客戶溝通的客製工具。
+                  </span>
                 </p>
               </div>
 
@@ -159,13 +164,13 @@ export default function InquiryPage() {
               </div>
 
               <div className="grid max-w-2xl gap-3 sm:grid-cols-2">
-                <div className="rounded-[24px] border border-[#d8c7a5]/30 bg-white/72 p-4 shadow-[0_10px_26px_rgba(17,17,17,0.035)]">
+                <div className="rounded-[24px] border border-[#d8c7a5]/30 bg-white/72 p-3.5 shadow-[0_10px_26px_rgba(17,17,17,0.035)] sm:p-4">
                   <p className="text-sm font-semibold text-neutral-950">商業合作詢價入口</p>
                   <p className="mt-2 text-sm leading-7 text-neutral-600">
                     聚焦專案需求、流程工具與客製開發方向，而不是一般聯絡表單。
                   </p>
                 </div>
-                <div className="rounded-[24px] border border-[#d8c7a5]/30 bg-white/72 p-4 shadow-[0_10px_26px_rgba(17,17,17,0.035)]">
+                <div className="rounded-[24px] border border-[#d8c7a5]/30 bg-white/72 p-3.5 shadow-[0_10px_26px_rgba(17,17,17,0.035)] sm:p-4">
                   <p className="text-sm font-semibold text-neutral-950">先整理，再討論</p>
                   <p className="mt-2 text-sm leading-7 text-neutral-600">
                     讓合作前的範圍、預算與時程先有清楚輪廓。
@@ -201,7 +206,7 @@ export default function InquiryPage() {
           </div>
         </section>
 
-        <section id="suitable-needs" className="space-y-5">
+        <section id="suitable-needs" className="space-y-4 sm:space-y-5">
           <div className="max-w-3xl">
             <p className="eyebrow mb-2 text-neutral-500">
               Use Cases
@@ -218,9 +223,9 @@ export default function InquiryPage() {
             {suitableNeeds.map((need, index) => (
               <article
                 key={need.title}
-                className="soft-ring rounded-[28px] border border-[#d8c7a5]/28 bg-white/74 p-5 transition hover:-translate-y-0.5 hover:bg-white/88 hover:shadow-[0_18px_44px_rgba(17,17,17,0.07)]"
+                className="soft-ring rounded-[28px] border border-[#d8c7a5]/28 bg-white/74 p-4 transition hover:-translate-y-0.5 hover:bg-white/88 hover:shadow-[0_18px_44px_rgba(17,17,17,0.07)] sm:p-5"
               >
-                <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-full bg-[#f2ede5] text-sm font-semibold text-neutral-950">
+                <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-[#f2ede5] text-sm font-semibold text-neutral-950 sm:mb-5 sm:h-10 sm:w-10">
                   {index + 1}
                 </div>
                 <h3 className="text-lg font-semibold tracking-tight text-neutral-950">{need.title}</h3>
@@ -230,9 +235,9 @@ export default function InquiryPage() {
           </div>
         </section>
 
-        <section id="inquiry-form" className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-          <form onSubmit={handleSubmit} className="glass-panel rounded-[34px] p-6 sm:p-8">
-            <div className="mb-7">
+        <section id="inquiry-form" className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-8">
+          <form onSubmit={handleSubmit} className="glass-panel rounded-[34px] p-5 sm:p-8">
+            <div className="mb-6 sm:mb-7">
               <p className="eyebrow mb-2 text-neutral-500">
                 Inquiry Form
               </p>
@@ -240,12 +245,15 @@ export default function InquiryPage() {
               <p className="mt-2 max-w-2xl text-sm leading-7 text-neutral-600">
                 這份表單用來整理合作方向，方便後續評估功能範圍、開發時程與報價區間。
               </p>
+              <p className="mt-4 rounded-[20px] border border-[#d8c7a5]/35 bg-[#f2ede5]/55 px-4 py-3 text-sm leading-7 text-neutral-700">
+                不用一次描述得很完整，先簡單寫下目前遇到的流程問題即可。
+              </p>
             </div>
 
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8">
               <div>
-                <h3 className="mb-5 text-lg font-semibold text-neutral-950">基本資訊</h3>
-                <div className="grid gap-5 sm:grid-cols-2">
+                <h3 className="mb-4 text-lg font-semibold text-neutral-950 sm:mb-5">基本資訊</h3>
+                <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
                   <Field label="公司 / 客戶名稱">
                     <input
                       className="field"
@@ -291,8 +299,8 @@ export default function InquiryPage() {
               </div>
 
               <div>
-                <h3 className="mb-5 text-lg font-semibold text-neutral-950">專案需求</h3>
-                <div className="grid gap-5 sm:grid-cols-2">
+                <h3 className="mb-4 text-lg font-semibold text-neutral-950 sm:mb-5">專案需求</h3>
+                <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
                   <Field label="需求類型">
                     <select
                       className="field appearance-none"
@@ -331,19 +339,19 @@ export default function InquiryPage() {
                   </Field>
                   <Field label="補充需求" className="sm:col-span-2">
                     <textarea
-                      className="field min-h-36 resize-none"
+                      className="field min-h-32 resize-none sm:min-h-36"
                       name="notes"
                       rows={5}
                       value={form.notes}
                       onChange={(event) => updateField("notes", event.target.value)}
-                      placeholder="可以補充希望完成的功能、參考網站、目前遇到的流程問題，或希望報價時優先評估的項目。"
+                      placeholder="不用一次描述得很完整，可以先寫目前遇到的流程問題。"
                     />
                   </Field>
                 </div>
               </div>
             </div>
 
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="mt-7 flex flex-col gap-4 sm:mt-8 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-sm leading-7 text-neutral-500">
                 目前為作品集展示版本，送出後僅顯示前端提示，不會實際保存或寄送資料。
               </p>
@@ -365,8 +373,8 @@ export default function InquiryPage() {
             ) : null}
           </form>
 
-          <aside className="space-y-6 lg:sticky lg:top-6">
-            <div className="glass-panel rounded-[34px] p-6 sm:p-8">
+          <aside className="space-y-5 sm:space-y-6 lg:sticky lg:top-6">
+            <div className="glass-panel rounded-[34px] p-5 sm:p-8">
               <p className="eyebrow mb-2 text-neutral-500">
                 Summary
               </p>
@@ -389,14 +397,14 @@ export default function InquiryPage() {
               </div>
             </div>
 
-            <div className="soft-ring rounded-[30px] border-white/10 bg-[linear-gradient(150deg,#171717_0%,#0f0f0f_100%)] p-6 text-white shadow-[0_22px_55px_rgba(17,17,17,0.2)]">
+            <div className="soft-ring rounded-[30px] border-white/10 bg-[linear-gradient(150deg,#171717_0%,#0f0f0f_100%)] p-5 text-white shadow-[0_22px_55px_rgba(17,17,17,0.2)] sm:p-6">
               <p className="text-lg font-semibold">不知道怎麼描述需求也沒關係</p>
               <p className="mt-4 text-sm leading-7 text-white/70">
                 你可以先簡單描述目前遇到的流程問題，例如報價太慢、資料分散、客戶填寫不完整，後續再一起整理成適合製作的工具方向。
               </p>
             </div>
 
-            <div className="soft-ring rounded-[30px] border-[#d8c7a5]/28 bg-white/74 p-6">
+            <div className="soft-ring rounded-[30px] border-[#d8c7a5]/28 bg-white/74 p-5 sm:p-6">
               <p className="text-lg font-semibold text-neutral-950">適合討論的內容</p>
               <div className="mt-4 space-y-3">
                 {inquiryFitNotes.map((note) => (
@@ -412,7 +420,7 @@ export default function InquiryPage() {
           </aside>
         </section>
 
-        <section className="space-y-5">
+        <section className="space-y-4 sm:space-y-5">
           <div className="max-w-3xl">
             <p className="eyebrow mb-2 text-neutral-500">
               Why cick tools
@@ -429,7 +437,7 @@ export default function InquiryPage() {
             {cickReasons.map((reason) => (
               <article
                 key={reason.title}
-                className="soft-ring rounded-[28px] border border-[#d8c7a5]/28 bg-white/74 p-6"
+                className="soft-ring rounded-[28px] border border-[#d8c7a5]/28 bg-white/74 p-5 sm:p-6"
               >
                 <p className="text-lg font-semibold text-neutral-950">{reason.title}</p>
                 <p className="mt-3 text-sm leading-7 text-neutral-600">{reason.description}</p>

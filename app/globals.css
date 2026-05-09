@@ -109,7 +109,7 @@ button {
   border-radius: 18px;
   border: 1px solid rgba(17, 17, 17, 0.08);
   background: rgba(255, 255, 255, 0.85);
-  padding: 0.9rem 1rem;
+  padding: 0.78rem 0.9rem;
   color: var(--foreground);
   line-height: 1.65;
   outline: none;
@@ -130,7 +130,7 @@ button {
 }
 
 .label {
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.45rem;
   display: block;
   font-size: 0.92rem;
   font-weight: 500;
@@ -201,6 +201,16 @@ button {
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(242, 237, 229, 0.78)),
     var(--panel);
+}
+
+@media (min-width: 640px) {
+  .field {
+    padding: 0.9rem 1rem;
+  }
+
+  .label {
+    margin-bottom: 0.55rem;
+  }
 }
 
 .fade-up {

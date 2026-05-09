@@ -42,13 +42,13 @@ const toNumber = (value) => {
 
 function SectionCard({ eyebrow, title, description, children, className = "" }) {
   return (
-    <section className={`glass-panel rounded-[32px] p-6 sm:p-8 ${className}`}>
-      <div className="mb-6">
+    <section className={`glass-panel rounded-[32px] p-5 sm:p-8 ${className}`}>
+      <div className="mb-5 sm:mb-6">
         <p className="eyebrow mb-2 text-neutral-500">
           {eyebrow}
         </p>
         <div className="space-y-2">
-          <h2 className="text-2xl font-semibold tracking-tight text-neutral-950">{title}</h2>
+          <h2 className="text-xl font-semibold tracking-tight text-neutral-950 sm:text-2xl">{title}</h2>
           {description ? <p className="max-w-2xl text-sm leading-7 text-neutral-600">{description}</p> : null}
         </div>
       </div>
@@ -127,10 +127,10 @@ export default function QuoteGenerator() {
 
   return (
     <main className="relative overflow-hidden">
-      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-8 px-4 py-5 sm:px-6 lg:px-8 lg:py-8">
+      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-6 px-4 py-5 sm:gap-8 sm:px-6 lg:px-8 lg:py-8">
         <SiteNav actionHref="/inquiry" actionLabel="預約客製報價" />
 
-        <section className="glass-panel fade-up overflow-hidden rounded-[36px] px-6 py-8 sm:px-8 lg:px-10 lg:py-10">
+        <section className="glass-panel fade-up overflow-hidden rounded-[36px] px-5 py-7 sm:px-8 sm:py-8 lg:px-10 lg:py-10">
           <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
             <div className="space-y-7">
               <div className="eyebrow text-neutral-600">
@@ -143,8 +143,13 @@ export default function QuoteGenerator() {
                 <h1 className="font-display hero-title text-4xl text-neutral-950 sm:text-5xl lg:text-6xl">
                   客製化報價單生成器
                 </h1>
-                <p className="max-w-2xl text-base leading-8 text-neutral-600 sm:text-lg sm:leading-8">
-                  以高質感介面整理報價流程，讓商務提案、費用計算與對外溝通一次到位。這是一個適合放進作品集展示，也能作為真實商業工具 demo 的前端作品。
+                <p className="max-w-xl text-base leading-7 text-neutral-600 sm:max-w-2xl sm:text-lg sm:leading-8">
+                  <span className="sm:hidden">
+                    整理報價流程、費用計算與對外溝通，打造能展示也能實用的客製工具 demo。
+                  </span>
+                  <span className="hidden sm:inline">
+                    以高質感介面整理報價流程，讓商務提案、費用計算與對外溝通一次到位。這是一個適合放進作品集展示，也能作為真實商業工具 demo 的前端作品。
+                  </span>
                 </p>
               </div>
 
@@ -163,13 +168,13 @@ export default function QuoteGenerator() {
                 </a>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-3">
+              <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
                 {[
                   ["即時計算", "單價、數量、折扣與稅額同步更新"],
                   ["流程整理", "輸入與預覽分區清楚，方便展示與操作"],
                   ["作品集等級", "保有商業感而不是制式後台畫面"],
                 ].map(([title, desc]) => (
-                  <div key={title} className="rounded-[24px] border border-[#d8c7a5]/30 bg-white/72 p-4 shadow-[0_10px_26px_rgba(17,17,17,0.035)]">
+                  <div key={title} className="rounded-[24px] border border-[#d8c7a5]/30 bg-white/72 p-3.5 shadow-[0_10px_26px_rgba(17,17,17,0.035)] sm:p-4">
                     <p className="mb-2 text-sm font-semibold text-neutral-900">{title}</p>
                     <p className="text-sm leading-7 text-neutral-600">{desc}</p>
                   </div>
@@ -179,7 +184,7 @@ export default function QuoteGenerator() {
 
             <div className="fade-up-delay relative">
               <div className="absolute inset-0 -z-10 translate-x-6 translate-y-6 rounded-[32px] bg-[linear-gradient(135deg,rgba(216,199,165,0.85),rgba(255,255,255,0.25))] blur-2xl" />
-              <div className="soft-ring rounded-[32px] border-white/10 bg-[linear-gradient(150deg,#171717_0%,#0f0f0f_100%)] p-4 text-white shadow-[0_30px_80px_rgba(17,17,17,0.3)]">
+              <div className="soft-ring rounded-[32px] border-white/10 bg-[linear-gradient(150deg,#171717_0%,#0f0f0f_100%)] p-3.5 text-white shadow-[0_30px_80px_rgba(17,17,17,0.3)] sm:p-4">
                 <div className="mb-4 flex items-center justify-between">
                   <div>
                     <p className="eyebrow eyebrow-dark">工具預覽</p>
@@ -190,7 +195,7 @@ export default function QuoteGenerator() {
                   </div>
                 </div>
 
-                <div className="rounded-[28px] border border-white/10 bg-white/[0.075] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+                <div className="rounded-[28px] border border-white/10 bg-white/[0.075] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] sm:p-5">
                   <div className="mb-5 flex items-start justify-between gap-4 border-b border-white/10 pb-5">
                     <div>
                       <p className="text-sm text-white/50">客戶</p>
@@ -202,7 +207,7 @@ export default function QuoteGenerator() {
                     </div>
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="space-y-3 sm:space-y-4">
                     {computedItems.slice(0, 3).map((item) => (
                       <div
                         key={item.id}
@@ -234,14 +239,14 @@ export default function QuoteGenerator() {
           </div>
         </section>
 
-        <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]" id="editor">
-          <div className="space-y-8">
+        <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:gap-8" id="editor">
+          <div className="space-y-6 sm:space-y-8">
             <SectionCard
               eyebrow="基本資料"
               title="建立報價資訊"
               description="把客戶與報價單資料整理成可對外展示的標準格式。"
             >
-              <div className="grid gap-5 sm:grid-cols-2">
+              <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
                 <Field label="客戶名稱">
                   <input
                     className="field"
@@ -277,7 +282,7 @@ export default function QuoteGenerator() {
                 <div className="sm:col-span-2">
                   <Field label="備註">
                     <textarea
-                      className="field min-h-28 resize-none"
+                      className="field min-h-24 resize-none sm:min-h-28"
                       value={form.notes}
                       onChange={(event) => updateForm("notes", event.target.value)}
                       placeholder="輸入交付內容、修正次數或付款說明"
@@ -292,13 +297,13 @@ export default function QuoteGenerator() {
               title="管理報價品項"
               description="支援新增多筆品項，單價與數量會自動換算小計。"
             >
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {computedItems.map((item, index) => (
                   <div
                     key={item.id}
-                    className="soft-ring rounded-[28px] bg-white/80 p-4 sm:p-5"
+                    className="soft-ring rounded-[28px] bg-white/80 p-3.5 sm:p-5"
                   >
-                    <div className="mb-4 flex items-center justify-between gap-4">
+                    <div className="mb-3 flex items-center justify-between gap-3 sm:mb-4 sm:gap-4">
                       <div>
                         <p className="text-sm font-semibold text-neutral-900">品項 {index + 1}</p>
                         <p className="mt-1 text-sm text-neutral-500">即時計算小計，減少手動換算錯誤。</p>
@@ -313,7 +318,7 @@ export default function QuoteGenerator() {
                       </button>
                     </div>
 
-                    <div className="grid gap-4 lg:grid-cols-[1.5fr_0.7fr_0.7fr_0.8fr]">
+                    <div className="grid gap-3 sm:gap-4 lg:grid-cols-[1.5fr_0.7fr_0.7fr_0.8fr]">
                       <Field label="品項名稱">
                         <input
                           className="field"
@@ -362,7 +367,7 @@ export default function QuoteGenerator() {
             </SectionCard>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             <SectionCard
               eyebrow="金額摘要"
               title="自動計算總額"
