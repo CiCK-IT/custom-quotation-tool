@@ -17,7 +17,7 @@ const initialForm = {
   quoteNumber: "QT-2026-041",
   date: "2026-04-22",
   contactPerson: "陳小姐",
-  notes: "此報價包含需求整理、介面設計、前端互動製作與基本上線協助。",
+  notes: "此報價包含需求整理、介面設計、前端互動開發與基本上線協助。",
   discount: "1200",
   taxRate: "5",
 };
@@ -65,7 +65,7 @@ function buildQuotePrintHtml({ form, items, totals }) {
         <tr>
           <td>${escapeHtml(item.name || "未命名品項")}</td>
           <td class="numeric">${formatCurrency(toNumber(item.price))}</td>
-          <td class="numeric">${toNumber(item.quantity)}</td>
+          <td class="quantity">${toNumber(item.quantity)}</td>
           <td class="numeric strong">${formatCurrency(item.subtotal)}</td>
         </tr>
       `
@@ -206,6 +206,11 @@ function buildQuotePrintHtml({ form, items, totals }) {
             white-space: nowrap;
           }
 
+          .quantity {
+            text-align: center;
+            white-space: nowrap;
+          }
+
           .strong {
             font-weight: 700;
           }
@@ -304,7 +309,7 @@ function buildQuotePrintHtml({ form, items, totals }) {
               <tr>
                 <th>品項</th>
                 <th class="numeric">單價</th>
-                <th class="numeric">數量</th>
+                <th class="quantity">數量</th>
                 <th class="numeric">小計</th>
               </tr>
             </thead>
