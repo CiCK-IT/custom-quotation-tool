@@ -1,4 +1,5 @@
 import "./globals.css";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Manrope, Noto_Sans_TC, Noto_Serif_TC } from "next/font/google";
 
 const manrope = Manrope({
@@ -22,6 +23,8 @@ const notoSerifTc = Noto_Serif_TC({
   display: "swap",
 });
 
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
 export const metadata = {
   title: "客製化報價單生成器",
   description: "高質感、現代感的客製化報價單生成器作品展示頁。",
@@ -37,6 +40,7 @@ export default function RootLayout({ children }) {
       <body className={`${manrope.variable} ${notoSansTc.variable} ${notoSerifTc.variable} antialiased`}>
         {children}
       </body>
+      {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
     </html>
   );
 }
